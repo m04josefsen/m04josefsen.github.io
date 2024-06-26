@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Karaktersnitt Kalkulator</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
     <main>
-        <textarea id="innKarakterer"></textarea>    
-        <button onclick="hentKarakterer()">TRYKK MEG</button>
+        <h1>Karaktersnitt Kalkulator</h1>
+        <ol class="steg">
+            <li>Logg inn på <a href="https://fsweb.no/studentweb/">Studentweb</a></li>
+            <li>Gå til Resultater</li>
+            <li>Kopier hele tabellen og lim den inn i tekst området under (Formateringen kommer til å se annerledes ut i tekstområdet)</li>
+            <li>Trykk på regn ut snittet mitt</li>
+        </ol>
+
+        <textarea id="innKarakterer"></textarea> <br/>
+        <button onclick="hentKarakterer()">Beregn Karaktersnitt</button>
+        <div id="resultat"></div>
     </main>
 </body>
 </html>

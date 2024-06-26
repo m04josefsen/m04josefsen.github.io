@@ -13,6 +13,7 @@ function placeholderText() {
 function hentKarakterer() {
     karakterSum = 0;
     studiepoengAntall = 0;
+    studiepoengAntallBestått = 0;
 
     const karakterer = document.getElementById("innKarakterer").value;
 
@@ -62,13 +63,39 @@ function hentKarakterer() {
 }
 
 function beregnKaraktersnitt() {
-    console.log(karakterSum);
-    console.log(studiepoengAntall);
-
     const karakterSnitt = (karakterSum / studiepoengAntall).toFixed(2);
+    const bokstavKarakter = beregnBokstavKarakter(karakterSnitt);
 
     studiepoengAntall += studiepoengAntallBestått;
 
-    console.log("Din studiepoengsum er : " + studiepoengAntall);    
-    console.log("Ditt karaktersnitt er : " + karakterSnitt);
+    let print = "Ditt karaktersnitt er: " + karakterSnitt + " og du har totalt " + studiepoengAntall + " studiepoeng";
+    print += "<br>Dette tilsvarer en " + bokstavKarakter;
+
+    document.getElementById("resultat").innerHTML = print;
+}
+
+function beregnBokstavKarakter(karakterSnitt) {
+    let bokstavKarakter;
+
+    switch (true) {
+        case (karakterSnitt <= 5 && karakterSnitt >= 4.5):
+            bokstavKarakter = 'A';
+            break;
+        case (karakterSnitt < 4.5 && karakterSnitt >= 3.5):
+            bokstavKarakter = 'B';
+            break;
+        case (karakterSnitt < 3.5 && karakterSnitt >= 2.5):
+            bokstavKarakter = 'C';
+            break;
+        case (karakterSnitt < 2.5 && karakterSnitt >= 1.5):
+            bokstavKarakter = 'D';
+            break;
+        case (karakterSnitt < 1.5 && karakterSnitt >= 1.0):
+            bokstavKarakter = 'E';
+            break;
+        default:
+            bokstavKarakter = 'Ikke gyldig karaktersnitt';
+    }
+
+    return bokstavKarakter;
 }
