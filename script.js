@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function placeholderText() {
-    document.getElementById("innKarakterer").placeholder = "FORMAT HER";
+    document.getElementById("innKarakterer").placeholder = "Lim inn her";
 }
 
 function hentKarakterer() {
@@ -17,17 +17,13 @@ function hentKarakterer() {
 
     const karakterer = document.getElementById("innKarakterer").value;
 
-    console.log(karakterer);
-    console.log("---------");
-
     const karakterListe = karakterer.split("\n");
 
     for(let i = 0; i < karakterListe.length; i++) {
         const linje = karakterListe[i];
-        const nesteLinje = karakterListe[i+1]; //TODO: må fikse så greiene ikke får array out of bounds error
-        console.log("Line " + (i + 1) + ": " + linje);
+        const nesteLinje = karakterListe[i+1]; 
 
-        if(linje == "A" || "B" || "C" || "D" || "E" || "Bestått" || "Ikke bestått") {//TODO: Må kegge til F og GODKJENTE FAG OG IKKE GODKJENTE FAG
+        if(linje == "A" || "B" || "C" || "D" || "E" || "Bestått" || "Ikke bestått") {
             switch(linje) {
                 case "A":
                     karakterSum += 5 * nesteLinje;
