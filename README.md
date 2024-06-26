@@ -1,1 +1,1 @@
-#Karaktersnitt Kalkulator for Universitet
+# Karaktersnitt Kalkulator for Universitet
