@@ -11,13 +11,21 @@ body {
 }
 
 main {
+    max-width: 900px; /* Just to provide a maximum width */
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center; /* Center main content horizontally */
+    align-items: flex-start; /* Align items at the top vertically */
+}
+
+.content {
+    flex: 1; /* Take remaining space */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
 }
 
 h1 {
@@ -26,8 +34,7 @@ h1 {
 }
 
 .steg {
-    text-align: left;
-    padding-left: 20px;
+    margin-bottom: 20px; /* Adjust spacing between steps and grading scale */
 }
 
 .steg li {
@@ -76,4 +83,27 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+#karakter-skala {
+    width: 30%; 
+    margin-left: 20px; 
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#karakter-skala p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#karakter-skala ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#karakter-skala li {
+    margin-bottom: 10px;
 }

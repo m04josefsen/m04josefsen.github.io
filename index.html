@@ -9,17 +9,32 @@
 </head>
 <body>
     <main>
-        <h1>Karaktersnitt Kalkulator</h1>
-        <ol class="steg">
-            <li>Logg inn på <a href="https://fsweb.no/studentweb/">Studentweb</a></li>
-            <li>Gå til Resultater</li>
-            <li>Kopier hele tabellen og lim den inn i tekst området under (Formateringen kommer til å se annerledes ut i tekstområdet)</li>
-            <li>Trykk på regn ut snittet mitt</li>
-        </ol>
+        <div class="content">
+            <h1>Karaktersnitt Kalkulator</h1>
+            
+            <ol class="steg">
+                <li>Logg inn på <a href="https://fsweb.no/studentweb/">Studentweb</a></li>
+                <li>Gå til Resultater</li>
+                <li>Kopier hele tabellen og lim den inn i tekst området under (Formateringen kommer til å se annerledes ut i tekstområdet)</li>
+                <li>Trykk på regn ut snittet mitt</li>
+            </ol>
 
-        <textarea id="innKarakterer"></textarea> <br/>
-        <button onclick="hentKarakterer()">Beregn Karaktersnitt</button>
-        <div id="resultat"></div>
+            <textarea id="innKarakterer"></textarea>
+            <button onclick="hentKarakterer()">Beregn Karaktersnitt</button>
+
+            <div id="resultat"></div>
+        </div>
+
+        <div id="karakter-skala">
+            <p><strong>Karakter Skala:</strong></p>
+            <ul>
+                <li>5,00 – 4,5 = A i snitt</li>
+                <li>4,49 – 3,5 = B i snitt</li>
+                <li>3,49 – 2,5 = C i snitt</li>
+                <li>2,49 – 1,5 = D i snitt</li>
+                <li>1,49 – 1,0 = E i snitt</li>
+            </ul>
+        </div>
     </main>
 </body>
 </html>
