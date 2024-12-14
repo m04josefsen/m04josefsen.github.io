@@ -19,43 +19,49 @@ function hentKarakterer() {
 
     const karakterListe = karakterer.split("\n");
 
-    for(let i = 0; i < karakterListe.length; i++) {
-        const linje = karakterListe[i];
-        const nesteLinje = karakterListe[i+1]; 
+    const fagKoder = {};
 
-        if(linje == "A" || "B" || "C" || "D" || "E" || "Bestått" || "Ikke bestått") {
-            switch(linje) {
-                case "A":
-                    karakterSum += 5 * nesteLinje;
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-                case "B":
-                    karakterSum += 4 * nesteLinje;
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-                case "C":
-                    karakterSum += 3 * nesteLinje;
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-                case "D":
-                    karakterSum += 2 * nesteLinje;
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-                case "E":
-                    karakterSum += 1 * nesteLinje;
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-                case "Bestått":
-                    studiepoengAntallBestått += Number(nesteLinje);
-                    break;
-                case "Bestått":
-                    studiepoengAntall += Number(nesteLinje);
-                    break;
-              } 
+    for (let i = 0; i < karakterListe.length; i++) {
+        const linje = karakterListe[i].trim();
+        const nesteLinje = karakterListe[i + 1]?.trim();
+
+        if (!isNaN(nesteLinje) && linje.match(/^[A-E]|Bestått|Ikke bestått$/)) {
+
+            const fagkode = karakterListe[i - 2]?.trim();
+
+            if (fagkode && !isNaN(nesteLinje)) {
+                const studiepoeng = Number(nesteLinje);
+                const verdi = karakterVerdi(linje);
+
+                if (!fagKoder[fagkode] || fagKoder[fagkode].verdi < verdi) {
+                    fagKoder[fagkode] = { karakter: linje, verdi: verdi, studiepoeng: studiepoeng };
+                }
+            }
         }
     }
-    
+
+    for (const fag in fagKoder) {
+        const data = fagKoder[fag];
+        if (data.karakter === "Bestått") {
+            studiepoengAntallBestått += data.studiepoeng;
+        } else {
+            karakterSum += data.verdi * data.studiepoeng;
+            studiepoengAntall += data.studiepoeng;
+        }
+    }
+
     beregnKaraktersnitt();
+}
+
+function karakterVerdi(karakter) {
+    switch (karakter) {
+        case "A": return 5;
+        case "B": return 4;
+        case "C": return 3;
+        case "D": return 2;
+        case "E": return 1;
+        default: return 0;
+    }
 }
 
 function beregnKaraktersnitt() {
@@ -71,27 +77,10 @@ function beregnKaraktersnitt() {
 }
 
 function beregnBokstavKarakter(karakterSnitt) {
-    let bokstavKarakter;
-
-    switch (true) {
-        case (karakterSnitt <= 5 && karakterSnitt >= 4.5):
-            bokstavKarakter = 'A';
-            break;
-        case (karakterSnitt < 4.5 && karakterSnitt >= 3.5):
-            bokstavKarakter = 'B';
-            break;
-        case (karakterSnitt < 3.5 && karakterSnitt >= 2.5):
-            bokstavKarakter = 'C';
-            break;
-        case (karakterSnitt < 2.5 && karakterSnitt >= 1.5):
-            bokstavKarakter = 'D';
-            break;
-        case (karakterSnitt < 1.5 && karakterSnitt >= 1.0):
-            bokstavKarakter = 'E';
-            break;
-        default:
-            bokstavKarakter = 'Ikke gyldig karaktersnitt';
-    }
-
-    return bokstavKarakter;
+    if (karakterSnitt >= 4.5) return 'A';
+    if (karakterSnitt >= 3.5) return 'B';
+    if (karakterSnitt >= 2.5) return 'C';
+    if (karakterSnitt >= 1.5) return 'D';
+    if (karakterSnitt >= 1.0) return 'E';
+    return 'Ikke gyldig karaktersnitt';
 }
